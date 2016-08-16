@@ -17,7 +17,7 @@ Article.prototype.toHtml = function(){
   $newArticle.attr('data-category', this.category);
   $newArticle.find('.byline a').text(this.author);
   $newArticle.find('.byline address').text(this.authorUrl);
-  $newArticle.find('.template h1').text(this.title);
+  $newArticle.find('h1').text(this.title);
   $newArticle.find('main section').text(this.body);
   $newArticle.find('time').text(this.publishedOn);
   //TODO: DONE Now use JQuery to fill in the rest of the current template clone with properties from this particular Article instance
@@ -28,19 +28,19 @@ Article.prototype.toHtml = function(){
   // 4. article body
   // 5. pub date
 
-
 //display the date as a relative number of days ago
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
-  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn) / 60 / 60 / 24 / 1000) + ' days ago' ));
+  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn) + ' days ago' )));
 
 //TODO: DONE This cloned article is no longer a template, as it now has real data attached to it. We need to account for that before this current article gets rendered to our DOM.
 //JUST REMOVE THE CLASS
-  $(newArticle).removeClass('template');
+  $newArticle.removeClass('template');
   return $newArticle;
 };
 
 //sorts most recent articles to top
 ourLocalData.sort(function(firstElement, secondElement) {
+  console.log(ourLocalData);
   return (new Date(secondElement.publishedOn)) - (new Date(firstElement.publishedOn));
 });
 
