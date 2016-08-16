@@ -20,7 +20,7 @@ Article.prototype.toHtml = function(){
   $newArticle.find('.template h1').text(this.title);
   $newArticle.find('main section').text(this.body);
   $newArticle.find('time').text(this.publishedOn);
-  //TODO: Now use JQuery to fill in the rest of the current template clone with properties from this particular Article instance
+  //TODO: DONE Now use JQuery to fill in the rest of the current template clone with properties from this particular Article instance
   //We need to fill in
   // 1. author name DONE
   // 2. author URL
@@ -33,9 +33,9 @@ Article.prototype.toHtml = function(){
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
   $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn) / 60 / 60 / 24 / 1000) + ' days ago' ));
 
-//TODO: This cloned article is no longer a template, as it now has real data attached to it. We need to account for that before this current article gets rendered to our DOM.
+//TODO: DONE This cloned article is no longer a template, as it now has real data attached to it. We need to account for that before this current article gets rendered to our DOM.
 //JUST REMOVE THE CLASS
-
+  $(newArticle).removeClass('template');
   return $newArticle;
 };
 
